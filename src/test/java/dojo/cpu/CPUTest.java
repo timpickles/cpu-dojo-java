@@ -7,7 +7,7 @@ import org.junit.Test;
 public class CPUTest {
 
     private CPU cpu;
-    private int[] program = new int[] {1,100,2,7,2,15,0};
+    private int[] program = new int[] {1,100,2,7,3,15,0};
     @Before
     public void setup() {
         cpu = new CPU();
@@ -17,7 +17,7 @@ public class CPUTest {
     public void shouldLoadProgramIntoCPU() {
         cpu.loadProgram(program);
 
-        int[] expected = new int[] {1,100,2,7,2,15,0,0,0,0,0,0,0,0,0,0};
+        int[] expected = new int[] {1,100,2,7,3,15,0,0,0,0,0,0,0,0,0,0};
 
         Assert.assertArrayEquals(expected, cpu.memory);
     }
@@ -43,6 +43,14 @@ public class CPUTest {
     public void shouldStoreRegisterValueInMemoryLocation() {
         cpu.loadProgram(new int[] {3,15});
         cpu.a = 107;
+        cpu.start();
+
+        Assert.assertEquals(107, cpu.memory[15]);
+    }
+
+    @Test
+    public void shouldExecuteEntireProgram() {
+        cpu.loadProgram(program);
         cpu.start();
 
         Assert.assertEquals(107, cpu.memory[15]);
