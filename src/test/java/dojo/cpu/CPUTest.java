@@ -8,6 +8,7 @@ public class CPUTest {
 
     private CPU cpu;
     private int[] program = new int[] {1,100,2,7,3,15,0};
+
     @Before
     public void setup() {
         cpu = new CPU();

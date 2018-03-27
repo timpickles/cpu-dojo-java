@@ -10,33 +10,26 @@ public class CPU {
     }
     
     private int nextProgramCounter() {
-        programCounter++;
-        return programCounter;
+        return programCounter++;
     }
 
     public void start() {
         while (memory[programCounter] != 0) {
-            switch (memory[programCounter]) {
+            switch (memory[nextProgramCounter()]) {
                 // LDA - Load value to register A
                 case 1:
                     a = memory[nextProgramCounter()];
-                    nextProgramCounter();
                     break;
 
                 // ADC - Add value to register A
                 case 2:
                     a += memory[nextProgramCounter()];
-                    nextProgramCounter();
                     break;
 
                 // STA - Store value of register A in memory
                 case 3:
                     memory[memory[nextProgramCounter()]] = a;
-                    nextProgramCounter();
                     break;
-
-                default:
-                    nextProgramCounter();
             }
         }
     }
