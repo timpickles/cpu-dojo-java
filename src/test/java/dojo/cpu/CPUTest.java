@@ -11,7 +11,7 @@ public class CPUTest {
 
     @Before
     public void setup() {
-        cpu = new CPU();
+        cpu = new CPU(16);
     }
 
     @Test
