@@ -10,6 +10,7 @@ public class CPU {
     }
 
     public void loadProgram(int[] program) {
+        memory = new int[memory.length];
         System.arraycopy(program, 0, memory, 0, program.length);
     }
     

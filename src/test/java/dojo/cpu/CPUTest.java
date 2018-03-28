@@ -15,10 +15,27 @@ public class CPUTest {
     }
 
     @Test
+    public void shouldInitialiseWithFixedMemorySize() {
+        cpu = new CPU(20);
+
+        Assert.assertEquals(20, cpu.memory.length);
+    }
+
+    @Test
     public void shouldLoadProgramIntoCPU() {
         cpu.loadProgram(program);
 
         int[] expected = new int[] {1,100,2,7,3,15,0,0,0,0,0,0,0,0,0,0};
+
+        Assert.assertArrayEquals(expected, cpu.memory);
+    }
+
+    @Test
+    public void shouldLoadProgramIntoCPUAndClearAnyOldMemory() {
+        cpu.loadProgram(program);
+        cpu.loadProgram(new int[] {1,100});
+
+        int[] expected = new int[] {1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
         Assert.assertArrayEquals(expected, cpu.memory);
     }
